@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Palco Animado</title>
+
+<style>
+    body {
+        margin: 0;
+        background: black;
+        overflow: hidden;
+    }
+
+    /* ===== LUZES SUPERIORES ===== */
+    .light {
+        position: absolute;
+        top: -60px;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        filter: blur(35px);
+        animation: blink 0.6s infinite alternate;
+        opacity: 0.8;
+        z-index: 1;
+    }
+
+    .l1 { left: 10%; background: red; }
+    .l2 { left: 30%; background: blue; animation-delay: .2s; }
+    .l3 { left: 50%; background: lime; animation-delay: .4s; }
+    .l4 { left: 70%; background: purple; animation-delay: .6s; }
+    .l5 { left: 90%; background: gold; animation-delay: .8s; }
+
+    @keyframes blink {
+        from { opacity: .2; }
+        to { opacity: 1; }
+    }
+
+    /* ===== FEIXES DE LUZ ===== */
+    .beam {
+        position: absolute;
+        top: 0;
+        width: 28px;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(255,255,255,.7), transparent);
+        opacity: 0.3;
+        animation: swing 2s infinite alternate;
+        z-index: 2;
+    }
+
+    .b1 { left: 18%; }
+    .b2 { left: 38%; animation-delay: .5s; }
+    .b3 { left: 58%; animation-delay: 1s; }
+    .b4 { left: 78%; animation-delay: 1.5s; }
