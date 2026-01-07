@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Luzes Animadas</title>
+
   <style>
     * {
       margin: 0;
@@ -11,12 +12,10 @@
     }
 
     body {
+      width: 100vw;
       height: 100vh;
       background: #000;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .container {
@@ -25,21 +24,21 @@
       height: 100%;
     }
 
-    /* ===== LUZES DE FUNDO ===== */
+    /* ===== LUZES DE FUNDO (CORRIGIDO) ===== */
     .luz {
       position: absolute;
-      width: 180px;
-      height: 180px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
+      filter: blur(35px);
+      opacity: 0.7; /* 🔥 FIX PRINCIPAL */
       animation: piscar 4s infinite ease-in-out;
-      filter: blur(25px);
-      opacity: 0;
       z-index: 1;
     }
 
     .luz:nth-child(1) {
       top: 20%;
-      left: 30%;
+      left: 25%;
       background: radial-gradient(circle, rgba(0,255,255,1), rgba(0,255,255,0));
       animation-delay: 0s;
     }
@@ -48,31 +47,28 @@
       top: 50%;
       left: 60%;
       background: radial-gradient(circle, rgba(255,0,255,1), rgba(255,0,255,0));
-      animation-delay: 1.5s;
+      animation-delay: 1.3s;
     }
 
     .luz:nth-child(3) {
       top: 70%;
-      left: 20%;
-      background: radial-gradient(circle, rgba(0,255,100,1), rgba(0,255,100,0));
-      animation-delay: 3s;
+      left: 15%;
+      background: radial-gradient(circle, rgba(0,255,120,1), rgba(0,255,120,0));
+      animation-delay: 2.6s;
     }
 
     @keyframes piscar {
       0% {
-        transform: scale(0.8);
-        opacity: 0;
-        filter: blur(40px);
+        transform: scale(0.9);
+        opacity: 0.4;
       }
       50% {
-        transform: scale(1.2);
-        opacity: 1;
-        filter: blur(15px);
+        transform: scale(1.3);
+        opacity: 0.9;
       }
       100% {
-        transform: scale(0.8);
-        opacity: 0;
-        filter: blur(40px);
+        transform: scale(0.9);
+        opacity: 0.4;
       }
     }
 
@@ -82,12 +78,64 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 90px;
+      font-size: 96px;
       font-weight: 900;
+      letter-spacing: 6px;
       text-transform: uppercase;
       color: #ffd700;
       z-index: 5;
-      overflow: hidden;
-      letter-spacing: 4px;
+
+      padding: 22px 44px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.35); /* 🔥 FIX CONTRASTE */
+
       text-shadow:
-        0 0 8px #ffd700,
+        0 0 10px #ffd700,
+        0 0 25px #ffcc00,
+        0 0 50px #ff9900;
+
+      overflow: hidden;
+    }
+
+    /* ===== 3 LUZES EM MOVIMENTO ===== */
+    .shine {
+      position: absolute;
+      top: 0;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.9),
+        transparent
+      );
+      animation: moveLight 2.8s infinite linear;
+      pointer-events: none;
+    }
+
+    .shine.s1 { left: -130%; animation-delay: 0s; }
+    .shine.s2 { left: -130%; animation-delay: 0.9s; }
+    .shine.s3 { left: -130%; animation-delay: 1.8s; }
+
+    @keyframes moveLight {
+      from { left: -130%; }
+      to   { left: 130%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="luz"></div>
+    <div class="luz"></div>
+    <div class="luz"></div>
+
+    <div class="logo">
+      LEO&VACARI
+      <div class="shine s1"></div>
+      <div class="shine s2"></div>
+      <div class="shine s3"></div>
+    </div>
+  </div>
+</body>
+</html>
